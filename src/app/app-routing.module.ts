@@ -1,11 +1,21 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HomeComponent } from './pages/home/home.component';
+import { AboutComponent } from './pages/about/about.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
+export const routes: Routes = [
+  { path: '', redirectTo: '/articles', pathMatch: 'full'},
+  { path: 'home', component: HomeComponent},
+  { path: 'about', component: AboutComponent},
+  { path: '404-not-found', component: NotFoundComponent},
+  { path: '**', redirectTo: '/404-not-found'},
+  {
+    path: 'articles',
+    loadChildren: './article/article.module#ArticleModule',
+  },
+  { path: 'login',
+    loadChildren: './login/login.module#LoginModule'}
+];
 
-const routes: Routes = [];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+export const routing: ModuleWithProviders = RouterModule.forRoot(routes)

@@ -1,1 +1,109 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+/******************** VARIABLES **********************/
+
+html{
+    --first: rgb(54, 156, 204);
+}
+
+/******************** FONTS **************************/
+
+@font-face{
+    font-family: "Roboto-Regular";
+    src: url("./assets/fonts/Roboto-Regular.ttf");
+}
+
+@font-face{
+    font-family: "Roboto-Light";
+    src: url("./assets/fonts/Roboto-Light.ttf");
+}
+
+@font-face{
+    font-family: "Ubuntu-Light";
+    src: url("./assets/fonts/Ubuntu-Light.ttf");
+}
+@font-face{
+    font-family: "Ubuntu-Regular";
+    src: url("./assets/fonts/Ubuntu-Regular.ttf");
+}
+/********************* GENERAL *************************/
+:root{
+    --bg-main-color: white;
+    --bg-secondary-color: rgb(247, 247, 247);
+    --text: rgb(10, 10, 10);
+}
+
+.dark-theme{
+    filter: invert(100%);
+} 
+
+body{
+    background-color: var(--bg-main-color);
+    color: var(--text);
+}
+
+h2, h3, h4, h5{
+    font-family: "Roboto-Regular";
+}
+
+h1, h2{
+    text-align: center;
+    font-family: "Ubuntu-Light";
+}
+
+p{
+    font-family: "Roboto-Light";
+}
+
+.container{
+    margin: auto;
+}
+
+/********************* BUTTON ********************/
+button, input, .btn, .form-control{
+    border-radius: 1px;
+    height: 2.3rem;
+}
+
+input:focus, .form-control:focus{
+    box-shadow: 0 0 4px rgb(57, 176, 231);
+}
+
+.btn{
+    font-family: "Roboto-Regular";
+}
+
+.btn-primary{
+    background-color: var(--first);
+    border-color: var(--first);
+    transition-duration: 0.5s;
+}
+
+.btn-primary:hover{
+    background-color: rgb(41, 115, 150);
+    border-color: rgb(41, 115, 150);
+    transition-duration: 0.5s;
+}
+
+/******************** CARD *************************/
+.card{
+    border-radius: 0em;
+    padding: 10px;
+    border: none;
+    height: 400px;
+}
+
+.card button{
+    margin: auto;
+}
+
+/****************** IMAGE **************************/
+img{
+    transition-duration: 0.5s;
+}
+
+img:hover{
+    filter: invert(10%);
+    transition-duration: 0.5s;
+}

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from './shared/_services/auth/auth.service';
+import { User } from './shared/_model/User';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'blog-v2';
+  title = 'Blog Voyage';
+
+  currentUser: User;
+
+  constructor(private authService: AuthService){
+    this.currentUser = this.authService.currentUserValue;
+  }
+
+  
 }

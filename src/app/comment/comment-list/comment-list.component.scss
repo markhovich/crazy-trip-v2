@@ -1,0 +1,12 @@
+.icon{
+    background: none;
+    border: none;
+}
+
+.icon > img{
+    height: 1.4rem;
+}
+
+.icon > img:hover{
+    filter: invert(40%);
+}

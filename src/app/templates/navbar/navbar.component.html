@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" routerLink="/home">CrazyTrip</a>
+    <img src="./assets/images/icons/agave.png" alt="icon">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" routerLink="/home">Accueil<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/articles">Articles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about" >A propos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact" >Contact</a>
+        </li>
+        <li *ngIf="currentUser && currentUser.role == 2" class="nav-item">
+          <a class="nav-link" routerLink="/admin">Admin</a>
+        </li>
+      </ul>
+      
+      <h5 *ngIf="currentUser">Bienvenue {{currentUser.name}}</h5>
+      <form
+      id="search" class="form-inline ml-3 my-2 my-lg-0">
+        <a class="" href="#"><img src="./assets/images/icons/search.png" alt="icon"></a>
+        <input class="form-control mr-sm-2" name="search" type="search" ngModel>
+      </form>
+      <a routerLink="/login" type="submit" *ngIf="!currentUser;else online" class="btn btn-info"
+      >Se Connecter</a>
+      <ng-template #online>
+        <div class="auth-block">
+          <a [routerLink]="['/user-account', cookieValue]" class="btn">Mon compte</a>
+          <a routerLink="/home" class="btn" (click)="logOut()">Se Déconnecter</a>
+        </div>
+      </ng-template>
+    </div>
+  </nav>
+  <script type="text/javascript" src="./assets/js/navbar.js"></script>
+  

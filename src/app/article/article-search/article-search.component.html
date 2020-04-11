@@ -1,0 +1,9 @@
+
+<div class="col-md-7 mx-auto">
+    <h3>Filtres</h3>
+    <form class="d-flex justify-content-center md-form form-sm mt-5 mb-5">
+      <input class="form-control" type="search" name="query" 
+      [(ngModel)]="query" (keyup.enter)="onSearch()" required/>
+      <button class="btn btn-secondary" type="button" (click)="onSearch()">Rechercher</button>
+    </form>
+</div>

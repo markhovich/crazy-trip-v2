@@ -1,0 +1,19 @@
+<h1>{{article.title}}</h1>
+<div class="row d-flex mt-4">
+    <div class="col-md-8">
+        <img [src]="article.image" alt="">
+    </div>
+    
+    <div class="col-md-4">
+        <span>Publié le {{article.created | date: 'dd/MM/yyyy'}}</span>
+        <hr>
+        <p>{{article.content}}</p>
+    </div>
+</div>
+<div class="col-md-3">
+    <a routerLink="/articles" class="btn btn-secondary">
+        <i></i>Retour aux articles</a>
+</div>
+
+<app-comment-list [articleId]="id"></app-comment-list>
+

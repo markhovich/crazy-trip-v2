@@ -1,0 +1,39 @@
+<h1>Gestion des abonnés</h1>
+
+<div class="col-md-3 mb-3">
+	<a routerLink="/home" class="btn btn-secondary">
+		<i></i>Retour au tableau de bord</a>
+</div>
+
+<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th scope="col">ID</th>
+			<th scope="col">Nom</th>
+			<th scope="col">Email</th>
+			<th colspan="3">Actions</th>
+		</tr>
+	</thead>
+
+	<tbody>
+			<tr *ngFor="let user of users">
+				<td>{{user.id}}</td>
+				<td>{{user.name}}</td>
+				<td>{{user.email}}</td>
+
+				<td>
+						<button type="submit" class="btn btn-info" name="id">Détails</button>
+					</td>
+
+				<td>
+						<button [routerLink]="['/user-edit', user.name]" type="submit" class="btn btn-warning" name="id">Modifier</button>
+					</td>
+				<td>
+				
+					<button class="btn btn-danger" (click)="onDelete(user)">Supprimer</button>
+
+					</td>
+			</tr>
+		
+	</tbody>
+</table>
