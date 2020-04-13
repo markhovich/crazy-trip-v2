@@ -1,1 +1,54 @@
-<p>home works!</p>
+<section>
+    <h2>Bienvenue sur CrazyTrip</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="./assets/images/articles/mazunte.jpg" alt="">
+        </div>
+        <div class="col-md">
+            <p>Bonjour !<br> Je m'appelle Julien... 
+                Beaucoup de choses m'intéressent dans la vie. 
+                Tout particulièrement l'informatique et le voyage.</p>
+            <p>Ce blog a été fabriqué par mes soins pour allier ces deux passions en partageant mes expériences et 
+                en développant mes compétences en création d'applications ainsi qu'en design et en rédaction.</p>
+            <p>Pour les détails techniques, ce site a été entièrement conçu avec Angular
+                pour le front et utilise une API Rest que j'ai créée avec Spring et Hibernate
+                en back. <br>
+                Bonne visite
+            </p>
+            <p>            
+                <button class="btn btn-primary" routerLink="/about">En savoir plus</button>
+            </p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Derniers articles</h2>
+<div class="row z-flex">
+    <div class="col-md-4" *ngFor="let article of articles">
+        <a [routerLink]="['/articles', article.id]">
+            <img [src]="article.image" class="card-img-top" alt="Image">
+        </a>
+        <div class="card-body">
+            <div class="card-inner-body">
+                <div class="blur">
+                    
+                </div>
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title">{{article.title}}</h5>
+                    <span></span>
+                </div> 
+                <p class="card-text">{{article.content}}...</p>
+            </div>
+            
+            <div class="card-buttons d-flex justify-content-between">
+                <button *ngIf="currentUser && currentUser.role == 2" [routerLink]="['/articles-edit', article.id]" 
+                class="btn btn-warning" >Modifier</button>
+                
+                <button [routerLink]="['/articles', article.id]" 
+                class="btn btn-primary" >Lire la suite</button>
+            </div>
+        </div>
+    </div>
+</div>
+</section>

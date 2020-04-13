@@ -11,10 +11,12 @@ import { PagesModule } from './pages/pages.module';
 import { CommentModule } from './comment/comment.module';
 import { LoginModule } from './login/login.module';
 import { ErrorInterceptor } from './shared/_helpers/error.interceptor';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

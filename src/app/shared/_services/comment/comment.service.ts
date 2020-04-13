@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Comment } from '../../_model/Comment';
-import { Article } from '../../_model/Article';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +19,7 @@ export class CommentService {
     return this.http.get(this.COM_API + id);
   }
 
-  save(content: string, articleId: number, id?: number){
-    var com = new Comment(1, content, new Date(), new Article(articleId));
+  save(com: Comment, id?: number){
 
     if(id){
       return this.http.put(this.COM_API + id, com);

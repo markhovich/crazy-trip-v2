@@ -26,6 +26,10 @@ export class ArticleService {
   }
 
   save(art: Article, id: number): Observable<any>{
+    if(!art.image){
+      art.image = './assets/images/articles/sancy.jpg';
+    }
+
     if(id>0){
       return this.http.put(this.ART_API + '/' + id, art);
     } else {

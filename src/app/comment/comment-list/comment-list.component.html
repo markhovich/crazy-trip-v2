@@ -1,20 +1,23 @@
 
 <div class="container col-md-8 mt-3">
-    <h3> {{nbCom}} Commentaires</h3>
+    <h3> {{nbCom}} {{nbCom>1 ? 'Commentaires' : 'Commentaire' }}</h3>
   
     <div *ngIf="nbCom > 0;else noComment;">
-      <ul class="list-group" *ngFor="let com of comments">
-        <li class="list-group-item">
-          <div class="d-flex justify-content-between">
-            
-            <div>
-              <small>Le {{com.created | date: 'dd MMM yyyy à H:mm:ss'}}</small>
-              <p>{{com.content}}</p>
-            </div>
-            <div *ngIf="true">
-              <button class="icon" (click)="onDelete(com.id)"><img src="./assets/images/icons/close.png" alt=""></button>
-            </div>
-        </div>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let com of comments">
+          <div class="comment-card">
+              <div class="comment-head">
+                {{com.user.name}} <small>a écrit</small>  
+                <small class="ml-2 comment-date">Le {{com.created | date: 'dd MMM yyyy à H:mm:ss'}}</small>
+                
+              </div>           
+              <div class="row justify-content-between comment-body">
+                <p class="">{{com.content}}</p>
+                <div *ngIf="com.user.name == currentUser.name || currentUser.role == 2">
+                  <button class="icon" (click)="onDelete(com)"><img src="./assets/images/icons/close.png" alt=""></button>
+                </div>
+              </div>
+          </div>
         </li>
       </ul>
     </div>
@@ -24,7 +27,7 @@
     </ng-template>
 
     <!-- FORMULAIRE AFFICHE SI AUTH-->
-    <div *ngIf="true; else offline">
+    <div *ngIf="currentUser; else offline">
       <form (ngSubmit)="onSubmit(f)" #f="ngForm" class="mt-3">
         
         <div class="form-group">

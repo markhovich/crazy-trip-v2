@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/shared/_model/User';
 import { AuthService } from 'src/app/shared/_services/auth/auth.service';
+import { CustomValidators } from 'src/app/shared/_helpers/must-match.validator';
 
 @Component({
   selector: 'app-register',
@@ -18,9 +19,9 @@ export class RegisterComponent implements OnInit {
 
 
   emailRegEx: string = '/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
-  
+  regEx: string = '/^([A-Za-z0-9]+)@([A-Za-z0-9]+)\.([a-z]{1,3})$/';
+  passwordError: string;
   error: string;
-  passwordError: boolean = false;
 
   constructor(private us: UserService,
     private formBuiler: FormBuilder,
@@ -33,15 +34,19 @@ export class RegisterComponent implements OnInit {
    */
   ngOnInit(): void {
     this.registerForm = this.formBuiler.group({
-      username: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+      username: ['jean', Validators.required],
+      email: ['jphauteur@gmail.com', [Validators.required, Validators.email]],
+      password: ['azerty', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['azerty', [Validators.required, Validators.minLength(6)]]
+    },
+    {
+       validator: CustomValidators.mustMatch
     })
 
     if(this.authService.currentUserValue){
       this.router.navigate(['/']);
     }
+
   }
 
   get f(){ return this.registerForm.controls; }
@@ -57,26 +62,30 @@ export class RegisterComponent implements OnInit {
   onSubmit(){
     this.submitted = true;
 
-    if(this.registerForm.value.password != this.registerForm.value.confirmPassword){
-      this.passwordError = true;
+    if(this.registerForm.value.password !== this.registerForm.value.confirmPassword){
+      this.passwordError = 'Les mots de passe ne sont pas identiques';
+      return;
     }
+
     if(this.registerForm.invalid){
       return;
     }
 
     this.loading = true;
 
-    const newUser = new User(this.registerForm.value.username,this.registerForm.value.email,this.registerForm.value.password, new Date(), 0);
+    const newUser = new User(0, this.registerForm.value.username,this.registerForm.value.email,this.registerForm.value.password, new Date(), 0);
     
     this.us.register(newUser).subscribe(
-      (data: string) => {
+      (data) => {
+        console.log(data);
         this.router.navigate(['/login']);
-        this.error = data;
       },
       error => {
-        this.error = 'Un compte avec cet email existe déjà '
+        this.error = 'Une erreur est survenue'
         console.error(error);
+        this.loading = false;
       }
     )
   }
+
 }

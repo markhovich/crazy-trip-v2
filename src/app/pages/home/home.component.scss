@@ -1,0 +1,44 @@
+
+.card-img-top{
+    height: 12rem;
+}
+
+.card-img-top:hover{
+    opacity: 0.8; 
+}
+
+.card-body{
+     padding: 0.6rem;
+}
+
+.blur{
+    position: absolute;
+    background: linear-gradient(transparent, white);
+    height: 8.6rem;
+    width: 21.5rem;
+}
+
+.card-button{
+    display: block;
+    margin: auto;
+    margin-top: 6rem;
+}
+
+.card-inner-body{
+    height: 8.6rem;
+    overflow: hidden;
+}
+
+.card-buttons{
+    margin: auto;
+    margin-bottom: 30px;
+}
+.toggle button{
+    border: none;
+    border-radius: 14px;
+    font-size: 0.9em;
+}
+
+img{
+    width: 100%;
+}

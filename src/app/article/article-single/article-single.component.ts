@@ -13,7 +13,7 @@ export class ArticleSingleComponent implements OnInit, OnDestroy {
 
   artSub: Subscription;
   article: Article = {};
-  id: number;
+  articleId: number;
 
   constructor(private as: ArticleService,
     private route: ActivatedRoute,
@@ -21,9 +21,9 @@ export class ArticleSingleComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.artSub = this.route.params.subscribe(params => {
-      this.id = params['id'];
-      if(this.id){
-        this.as.get(this.id).subscribe(res => {
+      this.articleId = params['id'];
+      if(this.articleId){
+        this.as.get(this.articleId).subscribe(res => {
           if(res){
             this.article = res;
           } else {

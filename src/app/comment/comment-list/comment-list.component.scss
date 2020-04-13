@@ -8,5 +8,39 @@
 }
 
 .icon > img:hover{
-    filter: invert(40%);
+    filter: invert(80%);
+}
+
+.list-group-item{
+    padding: 0;
+}
+
+.list-group-item:first-child{
+    border-radius: 0rem;
+}
+
+.list-group-item:last-child{
+    border-radius: 0rem;
+}
+
+.comment-card{
+    border: 1px solid rgb(219, 219, 219);
+    margin: 0;
+}
+
+.comment-head{
+    padding-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+    background-color: rgb(219, 219, 219);
+}
+
+.comment-date{
+    float: right;
+}
+
+.comment-body{
+    margin: 0;
+    padding: 10px;
+    background-color: rgb(245, 245, 245);
 }

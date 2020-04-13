@@ -1,0 +1,106 @@
+<h1>Tableau de bord - Administration</h1>
+<div class="quote">{{quote.citation}}</div>
+<hr>
+<div class="d-flex">
+    
+    <div class="card col-md-4">
+        <a routerLink="/articles">
+            <img src="./assets/images/icons/note.png" class="card-img-top" alt="Image">
+            <div class="card-body">
+                <div class="">
+                    <h4 class="card-title">
+                        Gestion des articles
+                    </h4>
+                </div>     
+                
+
+                <table class="table">
+                    <thead></thead>
+
+                    <tr>
+                        <td>Nombre d'articles</td>
+                        <td>{{nbArticles}}</td>
+                    </tr>
+                    <tr colspan=2>
+                        <td>Dernière publication</td>
+                    </tr>
+                    <tr>
+                        <td>{{lastArt.title}}</td>
+                        <td><small>Le {{lastArt.created | date: 'dd/MM/yyyy'}}</small></td>
+                    </tr>
+            
+                </table>
+                
+            </div>
+        </a>
+    </div>
+    
+    
+    <div class="card col-md-4">
+        <a routerLink="/user-list">
+            <img src="./assets/images/icons/team.png" class="card-img-top" alt="Image">
+            <div class="card-body">
+                <div class="">
+                    <h4 class="card-title">
+                        Gestion des abonnés
+                    </h4>
+                </div>     
+                
+                <table class="table">
+                    <thead></thead>
+
+                    <tr>
+                        <td>Nombre d'abonnés</td>
+                        <td>{{nbUsers}}</td>
+                    </tr>
+                    <tr colspan=2>
+                        <td>Dernier inscrit</td>
+                    </tr>
+                    <tr>
+                        <td>{{lastUser.name}}</td>
+                        <td><small>Le {{lastUser.created | date: 'dd/MM/yyyy'}}</small></td>
+                    </tr>
+            
+                </table>
+                
+            </div>
+        </a>
+    </div>
+
+    <div class="card col-md-4">
+        <a routerLink="/comment-list">
+            <img src="./assets/images/icons/comment.png" class="card-img-top" alt="Image">
+            <div class="card-body">
+                <div class="">
+                    <h4 class="card-title">
+                        Gestion des commentaires
+                    </h4>
+                </div>     
+                
+                <table class="table">
+                    <tr>
+                        <td>Nombre de commentaires</td>
+                        <td>{{nbCom}}</td>
+                    </tr>
+
+                    <tr>
+                        <td><h6>Dernier commentaire</h6></td>
+                        
+                    </tr>
+
+                    <tr>
+                        <td>{{lastCom.content}}</td>
+                        
+                    </tr>
+
+                    <tr>
+                        <td>{{lastCom.user.name}}</td>
+                        <td><small>Le {{lastCom.created | date: 'dd/MM/yyyy'}}</small></td>
+                    </tr>
+
+                </table>
+                
+            </div>
+        </a>
+    </div>
+</div>

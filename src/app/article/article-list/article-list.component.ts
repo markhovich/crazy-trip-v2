@@ -38,8 +38,8 @@ export class ArticleListComponent implements OnInit {
     this.articles = search;
     if(this.articles.length < 1 ){
       this.message = 'Aucun article ne correspond à la recherche';
+    } else {
+      this.message = null;
     }
-
-    console.log(this.message)
   }
 }

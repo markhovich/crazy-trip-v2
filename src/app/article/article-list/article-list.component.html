@@ -2,12 +2,13 @@
 
 <app-article-search (results)="displaySearch($event)"></app-article-search>
 
+<div *ngIf="message" class="alert alert-info">{{message}}</div>
+
 <div class="row z-flex">
     <div class="col-md-4" *ngFor="let article of articles">
         <a [routerLink]="['/articles', article.id]">
             <img [src]="article.image" class="card-img-top" alt="Image">
         </a>
-        <div *ngIf="message" class="alert alert-info">{{message}}</div>
         <div class="card-body">
             <div class="card-inner-body">
                 <div class="blur">

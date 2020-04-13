@@ -43,6 +43,16 @@ body{
     color: var(--text);
 }
 
+
+
+.container{
+    margin: auto;
+}
+
+section{
+    margin: 4rem 0;
+}
+
 h2, h3, h4, h5{
     font-family: "Roboto-Regular";
 }
@@ -52,12 +62,17 @@ h1, h2{
     font-family: "Ubuntu-Light";
 }
 
-p{
-    font-family: "Roboto-Light";
+h2{
+    margin-bottom: 3rem;
 }
 
-.container{
-    margin: auto;
+p{
+    font-family: "Roboto-Light";
+    text-align: justify;
+}
+
+.alert-danger, .alert-info, .alert-success{
+    border-radius: 0em;
 }
 
 /********************* BUTTON ********************/

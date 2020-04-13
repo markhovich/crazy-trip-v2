@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-
+import { routing } from './pages.routing';
 
 
 @NgModule({
@@ -13,7 +13,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
     NotFoundComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    routing
   ],
   exports: [
     HomeComponent,

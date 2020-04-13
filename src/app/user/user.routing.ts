@@ -7,8 +7,8 @@ import { AdminGuard } from '../shared/_helpers/admin.guard';
 
 export const routes: Routes = [
     { path: 'register', component: RegisterComponent},
-    { path: 'admin', component: UserListComponent, canActivate: [AdminGuard]},
-    { path: 'user-edit/:name', component: UserEditComponent}
+    { path: 'user-list', component: UserListComponent, canActivate: [AdminGuard]},
+    { path: 'user-edit/:name', component: UserEditComponent, canActivate: [AdminGuard]}
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forChild(routes)

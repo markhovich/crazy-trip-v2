@@ -1,0 +1,34 @@
+.quote{
+    text-align: center;
+}
+
+h4, h5{
+    text-align: center;;
+}
+
+img{
+    display: block;
+    width: 60%;
+    height: 10rem;
+    margin: auto;
+}
+
+.card{
+    padding: 15px;
+    height: 100%;
+}
+
+li{
+    list-style-type: none;
+}
+
+.card a{
+    color: #3a3a3a;
+}
+.card a:hover{
+    text-decoration: none;
+}
+
+.card:hover{
+    background-color: rgb(113, 183, 201);
+}
