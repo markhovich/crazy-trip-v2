@@ -4,13 +4,15 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { routing } from './pages.routing';
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     AboutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { routing } from './pages.routing';
   exports: [
     HomeComponent,
     AboutComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SearchComponent
   ]
 })
 export class PagesModule { }

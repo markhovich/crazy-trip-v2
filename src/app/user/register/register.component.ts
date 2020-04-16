@@ -34,10 +34,10 @@ export class RegisterComponent implements OnInit {
    */
   ngOnInit(): void {
     this.registerForm = this.formBuiler.group({
-      username: ['jean', Validators.required],
-      email: ['jphauteur@gmail.com', [Validators.required, Validators.email]],
-      password: ['azerty', [Validators.required, Validators.minLength(6)]],
-      confirmPassword: ['azerty', [Validators.required, Validators.minLength(6)]]
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
     },
     {
        validator: CustomValidators.mustMatch
@@ -73,17 +73,21 @@ export class RegisterComponent implements OnInit {
 
     this.loading = true;
 
-    const newUser = new User(0, this.registerForm.value.username,this.registerForm.value.email,this.registerForm.value.password, new Date(), 0);
-    
+    const newUser = new User(0, this.registerForm.value.username,this.registerForm.value.email,this.registerForm.value.password);
+    console.log(newUser);
     this.us.register(newUser).subscribe(
       (data) => {
         console.log(data);
         this.router.navigate(['/login']);
       },
       error => {
-        this.error = 'Une erreur est survenue'
+        this.error = '';
         console.error(error);
         this.loading = false;
+        //Redirection en attente de correctiond de bug
+        //La requête renvoie un message d'erreur systématique alors que la ressource est insérée dans la db
+        //Du coup on ne voit plus les cas ou les noms et pseudos sont deja pris...
+        this.router.navigate(['/login']);
       }
     )
   }

@@ -4,6 +4,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { JumbotronComponent } from './jumbotron/jumbotron.component';
 import { FooterComponent } from './footer/footer.component';
 import { routing } from './template-routing';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { routing } from './template-routing';
   ],
   imports: [
     CommonModule,
-    routing
+    routing,
+    FormsModule
   ],
   exports: [ 
     NavbarComponent, 

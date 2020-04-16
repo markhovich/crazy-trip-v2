@@ -5,10 +5,13 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserEditComponent } from './user-edit/user-edit.component';
+import { UserSingleComponent } from './user-single/user-single.component';
+import { UserRolePipe } from './_helpers/user-role.pipe';
 
 
 @NgModule({
-  declarations: [RegisterComponent, UserListComponent, UserEditComponent],
+  declarations: [RegisterComponent, UserListComponent, UserEditComponent, UserSingleComponent,
+  UserRolePipe],
   imports: [
     CommonModule,
     routing,
@@ -16,7 +19,8 @@ import { UserEditComponent } from './user-edit/user-edit.component';
     ReactiveFormsModule
   ],
   exports: [
-    RegisterComponent
+    RegisterComponent, UserListComponent, UserEditComponent, UserSingleComponent,
+    UserRolePipe
   ]
 })
 export class UserModule { }

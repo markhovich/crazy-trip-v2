@@ -23,20 +23,25 @@
           <a class="nav-link" routerLink="/admin">Admin</a>
         </li>
       </ul>
+
       <h5>Bienvenue {{currentUser ? currentUser.name : 'voyageur'}}</h5>
-      <form
+
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm"
       id="search" class="form-inline ml-3 my-2 my-lg-0">
         <a class="" href="#"><img src="./assets/images/icons/search.png" alt="icon"></a>
         <input class="form-control mr-sm-2" name="search" type="search" ngModel>
       </form>
+
       <a routerLink="/login" type="submit" *ngIf="!currentUser;else online" class="btn btn-info"
       >Se Connecter</a>
+
       <ng-template #online>
         <div class="auth-block">
-          <a [routerLink]="['/user-account', cookieValue]" class="btn">Mon compte</a>
+          <a [routerLink]="['/user-single', currentUser.name]" class="btn">Mon compte</a>
           <a routerLink="/home" class="btn" (click)="logOut()">Se Déconnecter</a>
         </div>
       </ng-template>
+
     </div>
   </nav>
   <script type="text/javascript" src="./assets/js/navbar.js"></script>

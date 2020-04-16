@@ -1,0 +1,14 @@
+<h2>Résultats de la recherche globale</h2>
+
+<div *ngIf="searchResult">
+    <div *ngFor="let res of searchResult" class="mb-3">
+        <div *ngFor="let item of res">
+            {{item.title}}<br>
+            {{item.content}}<br>
+            {{item.created | date: 'dd/MM/yyyy'}}
+        </div>
+        <hr>
+    </div>
+    
+</div>
+

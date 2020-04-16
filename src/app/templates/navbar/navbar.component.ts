@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/shared/_model/User';
 import { AuthService } from 'src/app/shared/_services/auth/auth.service';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
@@ -9,13 +11,10 @@ import { AuthService } from 'src/app/shared/_services/auth/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  //variable dev
-  isAdmin: boolean;
-  cookieValue: string;
-
   @Input() currentUser: User;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+      private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -24,4 +23,7 @@ export class NavbarComponent implements OnInit {
     this.authService.logout();
   }
 
+  onSubmit(f: NgForm){
+    this.router.navigate(['/search/' + f.value.search]);
+  }
 }

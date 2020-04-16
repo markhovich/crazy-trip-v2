@@ -12,6 +12,7 @@ import { CommentModule } from './comment/comment.module';
 import { LoginModule } from './login/login.module';
 import { ErrorInterceptor } from './shared/_helpers/error.interceptor';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { ContactModule } from './contact/contact.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
     BrowserModule,
     routing,
     ArticleModule,
+    ContactModule,
     CommentModule,
     UserModule,
     TemplatesModule,

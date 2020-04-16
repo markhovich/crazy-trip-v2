@@ -1,0 +1,41 @@
+<h1>Espace personnel de {{currentUser.name}}</h1>
+<div class="container row z-flex mt-3">
+    <div class="avatar col-md-2 mr-2">
+        <img src="./assets/images/icons/smile.png" alt="">
+    </div>
+    <table class="table col-md-7">
+        <thead class="thead-dark">
+            <tr>
+                <th colspan="2">Informations</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Adresse Email</td>
+                <td>
+                    <input type="text" [value]="currentUser.email">
+                </td>
+            </tr>            
+            <tr>
+                <td>Mot de passe</td>
+                <td>
+                    <input type="password" [value]="currentUser.password">
+                </td>
+            </tr>
+            <tr>
+                <td>Rôle</td>
+                <td>{{currentUser.role | userRole}}</td>
+            </tr>
+
+            <tr>
+                <td>Date d'inscription</td>
+                <td>{{currentUser.created | date: 'dd/MM/yyyy'}}</td>
+            </tr>
+            <tr>
+                <td>Derniers Commentaires laissés</td>
+                <td>A venir...</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
