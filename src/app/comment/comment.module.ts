@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CommentListComponent } from './comment-list/comment-list.component';
 import { FormsModule } from '@angular/forms';
 import { CommentAdminComponent } from './comment-admin/comment-admin.component';
+import { routing } from './comment.routing';
 
 @NgModule({
   declarations: [
@@ -11,10 +12,12 @@ import { CommentAdminComponent } from './comment-admin/comment-admin.component';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    routing
   ],
   exports: [
-    CommentListComponent
+    CommentListComponent, 
+    CommentAdminComponent
   ]
 })
 export class CommentModule { }

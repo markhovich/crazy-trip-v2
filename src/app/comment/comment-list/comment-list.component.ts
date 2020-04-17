@@ -33,7 +33,6 @@ export class CommentListComponent implements OnInit {
     this.comSub = this.cs.getByArticle(this.articleId).subscribe( (res: Comment[]) => {
       this.comments = res;
       this.nbCom = res.length;
-      console.log(res)
     })
   }
 

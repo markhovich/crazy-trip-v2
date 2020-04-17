@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { Globals } from '../../_helpers/globals';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
-  URL_API = 'http://localhost:8080/blog';
-  SEARCH_API = this.URL_API + '/search';
+  SEARCH_API = this.global.URL_API + '/search';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private global: Globals) { }
 
   getSearch(search: string){
     var param = new HttpParams().set("search", search);

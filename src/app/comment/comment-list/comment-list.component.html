@@ -13,8 +13,10 @@
               </div>           
               <div class="row justify-content-between comment-body">
                 <p class="">{{com.content}}</p>
-                <div *ngIf="com.user.name == currentUser.name || currentUser.role == 2">
-                  <button class="icon" (click)="onDelete(com)"><img src="./assets/images/icons/close.png" alt=""></button>
+                <div *ngIf="currentUser">
+                  <div *ngIf="com.user.name == currentUser.name || currentUser.role == 2">
+                    <button class="icon" (click)="onDelete(com)"><img src="./assets/images/icons/close.png" alt=""></button>
+                  </div>
                 </div>
               </div>
           </div>
@@ -41,7 +43,7 @@
     </div>
     <ng-template #offline>
       <div>
-        <a routerLink="/auth">Connectez-vous</a> pour pouvoir poster un commentaire
+        <a routerLink="/login">Connectez-vous</a> pour pouvoir poster un commentaire
       </div>
     </ng-template>
   </div>

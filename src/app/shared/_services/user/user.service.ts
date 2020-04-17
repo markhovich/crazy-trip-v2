@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { User } from '../../_model/User';
+import { Globals } from '../../_helpers/globals';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  API = 'http://localhost:8080/blog/';
-  USER_API = this.API + 'users/';
+  USER_API = this.global.URL_API + '/users/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private global: Globals) { }
 
   getAll(){
     return this.http.get(this.USER_API);
@@ -22,7 +23,7 @@ export class UserService {
 
   getByName(name: string){
     var param = new HttpParams().set("name", name);
-    return this.http.get(this.API + 'user', {params: param})
+    return this.http.get(this.global.URL_API + 'user', {params: param})
   }
 
   register(user: User){

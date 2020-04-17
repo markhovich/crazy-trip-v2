@@ -2,15 +2,16 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Article } from 'src/app/shared/_model/Article';
+import { Globals } from '../../_helpers/globals';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleService {
-  URL_API = 'http://localhost:8080/blog';
-  ART_API = this.URL_API + '/articles';
+  ART_API = this.global.URL_API + '/articles';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private global: Globals) { }
 
   getAll(){
     return this.http.get(this.ART_API);
@@ -22,7 +23,7 @@ export class ArticleService {
 
   getSearched(search: string){
     var param = new HttpParams().set("search", search);
-    return this.http.get(this.URL_API + '/article', {params: param});
+    return this.http.get(this.global.URL_API + '/article', {params: param});
   }
 
   save(art: Article, id: number): Observable<any>{

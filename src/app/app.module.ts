@@ -13,6 +13,7 @@ import { LoginModule } from './login/login.module';
 import { ErrorInterceptor } from './shared/_helpers/error.interceptor';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ContactModule } from './contact/contact.module';
+import { Globals } from './shared/_helpers/globals';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ContactModule } from './contact/contact.module';
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true,
-    }
+    },
+    Globals
   ],
   bootstrap: [AppComponent]
 })

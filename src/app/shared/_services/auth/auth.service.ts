@@ -3,18 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../../_model/User';
+import { Globals } from '../../_helpers/globals';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  API = 'http://localhost:8080/blog';
-  AUTH_API = this.API + '/auth/';
+  AUTH_API = this.global.URL_API + '/auth/';
 
   private currentUserSubject: BehaviorSubject<User>;
   private currentUser: Observable<User>;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient,
+    private global: Globals) { 
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
