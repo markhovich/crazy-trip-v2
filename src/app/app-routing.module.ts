@@ -4,16 +4,16 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AdminGuard } from './shared/_helpers/admin.guard';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/articles', pathMatch: 'full'},
+  { path: '', redirectTo: '/home', pathMatch: 'full'},
   { path: 'admin', component: DashboardComponent, canActivate: [AdminGuard]},
   { path: '**', redirectTo: '/404-not-found'},
   {
     path: 'pages',
-    loadChildren: './pages/pages.module#PagesModule',
+    loadChildren: './pages/pages.module#PagesModule'
   },
   {
     path: 'articles',
-    loadChildren: './article/article.module#ArticleModule',
+    loadChildren: './article/article.module#ArticleModule'
   },
   { path: 'login',
     loadChildren: './login/login.module#LoginModule'

@@ -13,6 +13,7 @@ export class ArticleSingleComponent implements OnInit, OnDestroy {
 
   artSub: Subscription;
   article: Article = {};
+  comments: Comment[];
   articleId: number;
 
   constructor(private as: ArticleService,
@@ -26,6 +27,7 @@ export class ArticleSingleComponent implements OnInit, OnDestroy {
         this.as.get(this.articleId).subscribe(res => {
           if(res){
             this.article = res;
+            this.comments = this.article.comments;
           } else {
             console.log('Article introuvable, retour à la liste');
             this.gotoList();

@@ -1,27 +1,32 @@
-<h2>{{article.title ? 'Editer' : 'Ajouter'}} Article</h2>
 
-<form class="form row" (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="image"><h5>Image</h5></label>
-            <img [src]="article.image" alt="image non chargée">
-            <input class="form-control" name="image" type="file" (change)="onFileSelected($event)" [(ngModel)]="article.image">
+<div *ngIf="article">
+
+    <h2>{{article.title ? 'Editer' : 'Ajouter'}} Article</h2>
+
+    <form class="form row" (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="image"><h5>Image</h5></label>
+                <img [src]="article.image" alt="image non chargée">
+                <input class="form-control" name="image" type="file" (change)="onFileSelected($event)" [(ngModel)]="article.image">
+            </div>
         </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label for="title"><h5>Titre</h5></label>
-            <input class="form-control" type="text" name="title" [(ngModel)]="article.title">
-        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="title"><h5>Titre</h5></label>
+                <input class="form-control" type="text" name="title" [(ngModel)]="article.title">
+            </div>
+        
+            <div class="form-group">
+                <label for="content"><h5>Contenu</h5></label>
+                <textarea class="form-control" value="" [(ngModel)]="article.content" name="content" cols="30" rows="10">
+                </textarea>
+            </div>
+        </div>    
     
-        <div class="form-group">
-            <label for="content"><h5>Contenu</h5></label>
-            <textarea class="form-control" value="" [(ngModel)]="article.content" name="content" cols="30" rows="10">
-            </textarea>
-        </div>
-    </div>    
+        <button class="btn btn-primary">Enregister</button>
+        <button class="btn btn-danger ml-2" (click)="onDelete(article.id)">Supprimer</button>
+        <button routerLink="/articles" class="btn btn-secondary ml-2">Annuler</button>
+    </form>
+</div>
 
-    <button class="btn btn-primary">Enregister</button>
-    <button class="btn btn-danger ml-2" (click)="onDelete(article.id)">Supprimer</button>
-    <button routerLink="/articles" class="btn btn-secondary ml-2">Annuler</button>
-</form>

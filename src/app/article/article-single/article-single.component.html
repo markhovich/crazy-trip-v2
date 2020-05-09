@@ -15,5 +15,8 @@
         <i></i>Retour aux articles</a>
 </div>
 
-<app-comment-list [articleId]="articleId"></app-comment-list>
+
+<div *ngIf="article.comments">
+    <app-comment-list [comments]="article.comments" [articleId]="articleId"></app-comment-list>
+</div>
 

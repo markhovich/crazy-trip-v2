@@ -17,11 +17,12 @@ export class CommentListComponent implements OnInit {
   //Variables dev
   cookieValue: string;
 
-  comments: Comment[];
-  comSub: Subscription;
+  @Input() comments: Comment[];
   @Input() articleId: number;
+
   currentUser: User;
 
+  comSub: Subscription;
   nbCom: number;
 
   constructor(private cs: CommentService,
@@ -30,10 +31,8 @@ export class CommentListComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.comSub = this.cs.getByArticle(this.articleId).subscribe( (res: Comment[]) => {
-      this.comments = res;
-      this.nbCom = res.length;
-    })
+      this.nbCom = this.comments.length;
+     
   }
 
   onDelete(com: Comment){
@@ -52,10 +51,12 @@ export class CommentListComponent implements OnInit {
 
   onSubmit(f: NgForm){
     var com = new Comment(0, f.value.comment, new Date(), new Article(this.articleId), new User(this.currentUser.id, this.currentUser.name));
-    console.log(com)
-    this.comSub = this.cs.save(com).subscribe(() => {
+    this.comSub = this.cs.save(com).subscribe(
+      data => {
       this.comments.push(com);
       this.nbCom = this.comments.length;
+    }, err => {
+      console.error(err);
     })
   }
 }

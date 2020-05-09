@@ -21,7 +21,7 @@ export class CommentService {
   }
 
   save(com: Comment, id?: number){
-
+    console.log(com);
     if(id){
       return this.http.put(this.COM_API + id, com);
     } else {

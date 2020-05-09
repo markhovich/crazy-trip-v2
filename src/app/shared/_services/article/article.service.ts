@@ -8,7 +8,7 @@ import { Globals } from '../../_helpers/globals';
   providedIn: 'root'
 })
 export class ArticleService {
-  ART_API = this.global.URL_API + '/articles';
+  ART_API = this.global.URL_API + '/articles/';
 
   constructor(private http: HttpClient,
     private global: Globals) { }
@@ -18,12 +18,12 @@ export class ArticleService {
   }
 
   get(id: number): Observable<any>{
-    return this.http.get(this.ART_API + '/' + id);
+    return this.http.get(this.ART_API +  id);
   }
 
   getSearched(search: string){
     var param = new HttpParams().set("search", search);
-    return this.http.get(this.global.URL_API + '/article', {params: param});
+    return this.http.get(this.ART_API + 'search', {params: param});
   }
 
   save(art: Article, id: number): Observable<any>{
@@ -32,14 +32,14 @@ export class ArticleService {
     }
 
     if(id>0){
-      return this.http.put(this.ART_API + '/' + id, art);
+      return this.http.put(this.ART_API + id, art);
     } else {
       return this.http.post(this.ART_API, art);
     }
   }
 
   delete(id: number): Observable<any>{
-    return this.http.delete(this.ART_API + '/' + id);
+    return this.http.delete(this.ART_API + id);
   }
 
 }
