@@ -29,9 +29,9 @@
 <section>
     <h2>Derniers articles</h2>
 <div class="row z-flex">
-    <div class="col-md-4" *ngFor="let article of articles">
+    <div class="col-md-4" *ngFor="let article of articles; let i = index">
         <a [routerLink]="['/articles', article.id]">
-            <img [src]="article.image" class="card-img-top" alt="Image">
+            <img [src]="images[i]" class="card-img-top" alt="Image">
         </a>
         <div class="card-body">
             <div class="card-inner-body">

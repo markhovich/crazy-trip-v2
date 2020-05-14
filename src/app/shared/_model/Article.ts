@@ -4,7 +4,7 @@ export class Article{
         public id?: number,
         public title?: string,
         public content?: string,
-        public image?: string,
+        public image?: any,
         public created?: Date,
         public loveIt?: number,
         public comments?: Comment[]

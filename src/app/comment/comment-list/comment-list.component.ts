@@ -55,6 +55,7 @@ export class CommentListComponent implements OnInit {
       data => {
       this.comments.push(com);
       this.nbCom = this.comments.length;
+      f.reset();
     }, err => {
       console.error(err);
     })

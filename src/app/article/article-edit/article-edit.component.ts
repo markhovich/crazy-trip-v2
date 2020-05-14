@@ -4,7 +4,8 @@ import { Article } from 'src/app/shared/_model/Article';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { FileService } from 'src/app/shared/_services/file/file.service';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-article-edit',
@@ -17,13 +18,15 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
   artSub: Subscription;
   id: number;
 
+  image;
   selectedFile: File;
 
   constructor(
     private as: ArticleService,
     private route: ActivatedRoute,
     private router: Router,
-    private http: HttpClient) { }
+    private fs: FileService,
+    private domSanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.artSub = this.route.params.subscribe(params => {
@@ -32,6 +35,13 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
         this.as.get(this.id).subscribe(res => {
           if(res){
             this.article = res;
+            console.log(res)
+            this.fs.download(this.article.id).subscribe(res => {
+              console.log(res);
+              this.createImageFromBlob(res);
+            }, err => {
+              console.error(err);
+            })
           } else {
             console.log('Article introuvable, retour à la liste');
             this.gotoList();
@@ -44,29 +54,40 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.artSub.unsubscribe();
   }
+  
+  createImageFromBlob(image: Blob){
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.image = reader.result;
+    }, false);
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
+    
+    this.image = this.domSanitizer.bypassSecurityTrustUrl('data:image/jpeg;base64,' + reader.result);
+    }
 
   onFileSelected(event){
     this.selectedFile = event.target.files[0];
-  }
-
-  postFile(selectedFile: File){
-    //On récupère et upload l'image
-    const formData = new FormData()
-    formData.append('image', selectedFile)
-    return this.http.post('https://crazytripimages.s3.us-east-2.amazonaws.com/articles/', formData)
-            .subscribe(
-              (response) => {
-                console.log(response);
-              }
-            );
+    console.log(this.selectedFile)
   }
 
   onSubmit(f: NgForm){
 
-    this.postFile(this.selectedFile);
+    this.as.save(f.value, this.id).subscribe((res: Article) => {
+      console.log(res)
+      if(this.selectedFile){
+        this.fs.upload(this.selectedFile, res.id).subscribe(
+          res => {
+            console.log(res);
+            this.gotoList();
+          }, err => {
+            console.error(err);
+          }
+        );
+      }
 
-    this.as.save(f.value, this.id).subscribe(() => {
-      this.gotoList();
     }, (error) => {
       console.error(error);
     });
