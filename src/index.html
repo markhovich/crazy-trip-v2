@@ -4,10 +4,37 @@
   <meta charset="utf-8">
   <title>CrazyTrip - Life is beautiful</title>
   <base href="/">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="./assets/images/icons/agave.png">
 </head>
 <body>
   <app-root></app-root>
+
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyBV0-LjJOSsyAfjgzvNFGdW43eM0ZN7ps8",
+    authDomain: "crazy-trip-2.firebaseapp.com",
+    databaseURL: "https://crazy-trip-2.firebaseio.com",
+    projectId: "crazy-trip-2",
+    storageBucket: "crazy-trip-2.appspot.com",
+    messagingSenderId: "532025982129",
+    appId: "1:532025982129:web:a3e023bc3b7a154cc53690",
+    measurementId: "G-Q8FR701TT5"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+
 </body>
 </html>

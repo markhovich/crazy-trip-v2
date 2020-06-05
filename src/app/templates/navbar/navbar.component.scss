@@ -2,8 +2,13 @@ nav {
     background-color: var(--bg-secondary-color);
 }
 
-nav > img{
-    padding-right: 10px;
+.branding{
+    margin-bottom: -0.4rem;
+}
+
+.branding-image{
+    height: 1.7rem;
+    padding: 0 1rem;
 }
 
 .nav-link{
@@ -15,7 +20,7 @@ nav > img{
 }
 
 button, input{
-    border-radius: 1px;
+    border-radius: 0rem;
 }
 
 form{
@@ -36,7 +41,7 @@ form{
     padding-left: 40px;
 }
 
-a img{
+form a img{
     width: 1.7rem;
     height: 1.7rem;
     display: block;
@@ -72,4 +77,18 @@ form a{
 
 nav h5{
     font-family: "Ubuntu-Light";
+}
+
+input, input:focus, .is-invalid:focus{
+    border: none;
+    box-shadow: none;
+    background: none;
+}
+
+input{
+    border-bottom: 2px solid rgb(51, 51, 51);;
+}
+
+input:focus{
+    border-bottom: 2px solid teal;;
 }

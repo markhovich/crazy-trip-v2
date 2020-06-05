@@ -1,0 +1,12 @@
+input, input:focus, .is-invalid:focus{
+    border: none;
+    box-shadow: none;
+}
+
+input{
+    border-bottom: 2px solid rgb(51, 51, 51);;
+}
+
+input:focus{
+    border-bottom: 2px solid teal;;
+}
