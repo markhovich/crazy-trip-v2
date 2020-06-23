@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "crazy-trip-2": {
+      "hosting": {
+        "blog-v2": [
+          "crazy-trip-2"
+        ]
+      }
+    }
+  }
+}

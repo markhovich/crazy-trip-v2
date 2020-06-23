@@ -30,11 +30,13 @@
             <div *ngIf="error" class="alert-danger alert">
                 {{error}}
             </div>
-            <div class="form-group mt-4">
+
+            <div class=" form-group mt-4">
                 <button [disabled]="loading" class="btn btn-block btn-primary">
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                     Se Connecter
                 </button>
+
             </div>
         </form>
         <small>Tu n'as pas encore de compte ? <a routerLink="/register">Inscris-toi</a></small>

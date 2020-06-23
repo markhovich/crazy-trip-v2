@@ -7,6 +7,10 @@
     opacity: 0.8; 
 }
 
+
+.card-title h5{
+    margin-bottom: 0;
+}
 .card-body{
      padding: 0.6rem;
 }
@@ -14,8 +18,8 @@
 .blur{
     position: absolute;
     background: linear-gradient(transparent, white);
-    height: 8.6rem;
-    width: 21.5rem;
+    height: 9rem;
+    width: 100%;
 }
 
 .card-button{
@@ -25,7 +29,7 @@
 }
 
 .card-inner-body{
-    height: 8.6rem;
+    height: 9rem;
     overflow: hidden;
 }
 

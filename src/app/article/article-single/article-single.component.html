@@ -3,8 +3,11 @@
     <div class="col-md-8">
         <img [src]="image" alt="Image non chargée">
     </div>
-    
     <div class="col-md-4">
+        <div *ngFor="let category of article.categories" class="badge badge-info mb-2 mr-1">
+            {{ category.name }}
+        </div>
+    <br>
         <span>Publié le {{article.created | date: 'dd/MM/yyyy'}}</span>
         <hr>
         <p>{{article.content}}</p>

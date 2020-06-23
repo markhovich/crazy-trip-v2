@@ -3,9 +3,11 @@ import { ArticleService } from 'src/app/shared/_services/article/article.service
 import { Article } from 'src/app/shared/_model/Article';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FileService } from 'src/app/shared/_services/file/file.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CategoryService } from 'src/app/shared/_services/category/category.service';
+import { Category } from 'src/app/shared/_model/Category';
 
 @Component({
   selector: 'app-article-edit',
@@ -14,6 +16,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ArticleEditComponent implements OnInit, OnDestroy {
 
+  articleForm: FormGroup;
   article: Article = {};
   artSub: Subscription;
   id: number;
@@ -21,14 +24,25 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
   image;
   selectedFile: File;
 
+  categories: Category[];
+  selectedCats: Category[] = [];
+
   constructor(
     private as: ArticleService,
+    private cs: CategoryService,
     private route: ActivatedRoute,
     private router: Router,
+    private formBuilder: FormBuilder,
     private fs: FileService,
     private domSanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
+    this.cs.getAll().subscribe( (res: Category[]) => {
+      this.categories = res;
+    }, err => {
+      console.error(err);
+    })
+
     this.artSub = this.route.params.subscribe(params => {
       this.id = params['id'];
       if(this.id){
@@ -36,6 +50,8 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
           if(res){
             this.article = res;
             console.log(res)
+            this.initForm(this.article);
+
             this.fs.download(this.article.id).subscribe(res => {
               console.log(res);
               this.createImageFromBlob(res);
@@ -47,14 +63,29 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
             this.gotoList();
           }
         });
+      } else {
+        this.article = new Article();
+        this.initForm(this.article);
       }
     })
+
   }
 
   ngOnDestroy() {
     this.artSub.unsubscribe();
   }
+
+  initForm(article?: Article){
+    this.articleForm = this.formBuilder.group({
+      title: [article.title, Validators.required],
+      categories: article.categories,
+      content: article.content,
+      image: article.image
+    })
+  }
   
+  get f(){ return this.articleForm.controls};
+
   createImageFromBlob(image: Blob){
     let reader = new FileReader();
     reader.addEventListener("load", () => {
@@ -73,9 +104,17 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
     console.log(this.selectedFile)
   }
 
-  onSubmit(f: NgForm){
+  onSubmit(){
+    const values = this.articleForm.value;
+    const selectedCats = [];
 
-    this.as.save(f.value, this.id).subscribe((res: Article) => {
+    /** Il faut convertir le tableau d'entier du formulaire en tableau de Category */
+    values.categories.forEach(element => {
+      selectedCats.push(this.categories.find( cat => cat.id === element));
+    });
+    values.categories = selectedCats;
+
+    this.as.save(values, this.id).subscribe((res: Article) => {
       console.log(res)
       if(this.selectedFile){
         this.fs.upload(this.selectedFile, res.id).subscribe(
@@ -87,7 +126,6 @@ export class ArticleEditComponent implements OnInit, OnDestroy {
           }
         );
       }
-
     }, (error) => {
       console.error(error);
     });

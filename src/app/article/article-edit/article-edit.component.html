@@ -1,25 +1,30 @@
 
-<div *ngIf="article">
+<div *ngIf="articleForm && categories">
 
     <h2>{{article.title ? 'Editer' : 'Ajouter'}} Article</h2>
 
-    <form class="form row" (ngSubmit)="onSubmit(f)" #f="ngForm">
+    <form class="form row" [formGroup]="articleForm" (ngSubmit)="onSubmit()">
         <div class="col-md-6">
             <div class="form-group">
                 <label for="image"><h5>Image</h5></label>
                 <img *ngIf="image" [src]="image" alt="">
-                <input class="form-control" name="image" type="file" (change)="onFileSelected($event)" [(ngModel)]="article.image">
+                <input class="form-control" name="image" type="file" (change)="onFileSelected($event)">
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group">
                 <label for="title"><h5>Titre</h5></label>
-                <input class="form-control" type="text" name="title" [(ngModel)]="article.title">
+                <input class="form-control" formControlName="title" type="text" name="title">
             </div>
-        
+            <h5>Catégories</h5>
+            <ng-select [multiple]="true" formControlName="categories">
+                <ng-option *ngFor="let category of categories" [value]="category.id" [disabled]="category.disabled">{{category.name}}</ng-option>
+                <ng-option [value]="'custom'">Custom</ng-option>
+            </ng-select>
+                    
             <div class="form-group">
                 <label for="content"><h5>Contenu</h5></label>
-                <textarea class="form-control" value="" [(ngModel)]="article.content" name="content" cols="30" rows="10">
+                <textarea class="form-control" formControlName="content" value="" name="content" cols="30" rows="10">
                 </textarea>
             </div>
         </div>    

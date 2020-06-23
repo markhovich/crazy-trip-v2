@@ -1,3 +1,5 @@
+import { Category } from './Category';
+
 export class Article{
 
     constructor(
@@ -7,6 +9,7 @@ export class Article{
         public image?: any,
         public created?: Date,
         public loveIt?: number,
-        public comments?: Comment[]
+        public comments?: Comment[],
+        public categories?: Category[]
         ){}
 }

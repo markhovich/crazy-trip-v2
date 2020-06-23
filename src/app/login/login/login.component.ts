@@ -59,7 +59,8 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     this.authService.login(this.f.username.value, this.f.password.value).subscribe(
       res => {
-        this.router.navigate([this.returnUrl])
+        console.log(res);
+        this.router.navigate([this.returnUrl]);
       },
       error => {
         console.error(error);
@@ -68,5 +69,4 @@ export class LoginComponent implements OnInit {
       }
     );
   }
-
 }

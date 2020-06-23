@@ -14,6 +14,7 @@ import { ErrorInterceptor } from './shared/_helpers/error.interceptor';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ContactModule } from './contact/contact.module';
 import { Globals } from './shared/_helpers/globals';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { Globals } from './shared/_helpers/globals';
     TemplatesModule,
     LoginModule,
     PagesModule,
-    HttpClientModule
+    HttpClientModule,
+    NgSelectModule
   ],
   providers: [
     {

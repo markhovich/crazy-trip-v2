@@ -33,7 +33,7 @@ export class ArticleSingleComponent implements OnInit, OnDestroy {
           if(res){
             this.article = res;
             this.comments = this.article.comments;
-
+            console.log(this.article)
             this.fs.download(this.article.id).subscribe(res => {
               this.image = this.createImageFromBlob(res);
               console.log(this.image);
