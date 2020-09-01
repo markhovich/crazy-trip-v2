@@ -1,3 +1,7 @@
 img{
     width: 100%;
 }
+
+.ng-select.custom ::ng-deep .ng-select-container{
+    border-radius: 0;
+}

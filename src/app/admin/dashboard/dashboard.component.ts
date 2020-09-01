@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
   nbCom: number;
   nbUsers: number;
   nbArticles: number;
+  nbCategories: number;
 
   lastArt: Article;
   lastUser: User;

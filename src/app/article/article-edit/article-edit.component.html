@@ -17,12 +17,11 @@
                 <input class="form-control" formControlName="title" type="text" name="title">
             </div>
             <h5>Catégories</h5>
-            <ng-select [multiple]="true" formControlName="categories">
+            <ng-select class="custom" [multiple]="true" formControlName="categories">
                 <ng-option *ngFor="let category of categories" [value]="category.id" [disabled]="category.disabled">{{category.name}}</ng-option>
-                <ng-option [value]="'custom'">Custom</ng-option>
             </ng-select>
                     
-            <div class="form-group">
+            <div class="form-group mt-3">
                 <label for="content"><h5>Contenu</h5></label>
                 <textarea class="form-control" formControlName="content" value="" name="content" cols="30" rows="10">
                 </textarea>

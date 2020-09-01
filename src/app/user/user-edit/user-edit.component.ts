@@ -33,6 +33,8 @@ export class UserEditComponent implements OnInit {
                 console.log("Utilisateur introuvable");
                 this.gotoList();
               }
+            }, err => {
+              console.error(err);
             }
             )
         }        
@@ -42,6 +44,27 @@ export class UserEditComponent implements OnInit {
 
   onClick(){
     console.log();
+  }
+
+  turnInput(event){
+    const el = event.target;
+    const text = el.textContent;
+    console.log(text)
+    console.log(el)
+    
+    if(el.className == 'plain'){
+      el.innerHTML = '<input type="text" value="' + text + '">';
+      el.className = 'editable';
+    } else {
+      el.className = 'plain';
+    }
+  }
+
+  update(event){
+    console.log(event.target)
+    const child = document.getElementById('user-email').firstChild;
+    const nexText = child
+    console.log(nexText);
   }
 
   gotoList(){

@@ -22,7 +22,7 @@
 				<td>{{user.email}}</td>
 
 				<td>
-						<button type="submit" class="btn btn-info" name="id">Détails</button>
+						<button [routerLink]="['/user-single', user.name]" type="submit" class="btn btn-info" name="id">Détails</button>
 					</td>
 
 				<td>

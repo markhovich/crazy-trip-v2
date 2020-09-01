@@ -23,7 +23,7 @@ export class UserService {
 
   getByName(name: string){
     var param = new HttpParams().set("name", name);
-    return this.http.get(this.global.URL_API + 'user', {params: param})
+    return this.http.get(this.USER_API + 'name', {params: param})
   }
 
   register(user: User){

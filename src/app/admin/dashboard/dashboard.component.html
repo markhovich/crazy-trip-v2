@@ -1,7 +1,7 @@
 <h1>Tableau de bord - Administration</h1>
 <div *ngIf="quote" class="quote">{{quote.citation}}</div>
 <hr>
-<div class="d-flex">
+<div class="row">
     
     <div class="card col-md-4">
         <a routerLink="/articles">
@@ -98,6 +98,34 @@
                         <td><small>Le {{lastCom.created | date: 'dd/MM/yyyy'}}</small></td>
                     </tr>
 
+                </table>
+                
+            </div>
+        </a>
+    </div>
+    <div class="card col-md-4">
+        <a routerLink="/categories">
+            <img src="./assets/images/icons/note.png" class="card-img-top" alt="Image">
+            <div class="card-body">
+                <div class="">
+                    <h4 class="card-title">
+                        Gestion des catégories
+                    </h4>
+                </div>     
+                
+
+                <table class="table">
+                    <thead></thead>
+
+                    <tr>
+                        <td>Nombre de catégories</td>
+                        <td >{{nbCategories}}</td>
+                    </tr>
+                    <tr colspan=2>
+                        <td>Dernière publication</td>
+                    </tr>
+
+            
                 </table>
                 
             </div>
